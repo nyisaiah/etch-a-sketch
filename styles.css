@@ -1,12 +1,12 @@
 #grid {
     width: 500px;
     height: 500px;
-    border: 5px solid blue;
+    border: 5px solid black;
     display: flex;
     flex-wrap: wrap;
 }
 
 .empty_square{
-    background-color: aqua;
-    border: 1px solid blue;
+    background-color: white;
+    border: 1px solid gray;
 }

@@ -1,7 +1,12 @@
 // Create Empty Grid
-const SIDE_LENGTH = 16;
+let isMouseDown = false
+
+let SIDE_LENGTH = 16
 const BORDER_SIZE = 1;
+
+
 const grid = document.querySelector("#grid");
+const dimensionsButton = document.querySelector("#dimensions")
 
 function createEmptyGrid(SIDE_LENGTH, BORDER_SIZE){
     const GRID_SIZE = grid.clientWidth;
@@ -17,10 +22,14 @@ function createEmptyGrid(SIDE_LENGTH, BORDER_SIZE){
 }
 
 createEmptyGrid(SIDE_LENGTH, BORDER_SIZE);
-let isMouseDown = false
 
-document.addEventListener("mousedown", () => {
+grid.addEventListener("mousedown", (event) => {
     isMouseDown = true;
+    let target = event.target;
+    const targetSquare = document.querySelector(`#${target.id}`);
+    targetSquare.style["background-color"] = "black"
+    console.log(target.id)
+    console.log("true")
 });
 
 document.addEventListener("mouseup", () => {
@@ -36,3 +45,12 @@ grid.addEventListener("mouseover", (event) => {
     }
     
 });
+
+dimensionsButton.addEventListener("click", ()=> {
+    SIDE_LENGTH = Number(prompt("Enter an integer between 1 and 100 for the new Dimensions"))
+    if (SIDE_LENGTH >=1 && SIDE_LENGTH <= 100 && Number.isInteger(SIDE_LENGTH)){
+        grid.innerHTML =  '';
+        createEmptyGrid(SIDE_LENGTH, BORDER_SIZE);
+    }
+    else alert("Must be an integer between 1 and 100 my guy")
+})
